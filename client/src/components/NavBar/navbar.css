@@ -11,4 +11,10 @@
       transform: translateY(0);
     }
   }
+
+.customcss-nav-p{
+  font-size: 24px;
+  font-weight: 600;
+  margin:clamp(80px 20px 100px)
+}
   
