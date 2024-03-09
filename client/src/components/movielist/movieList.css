@@ -1,0 +1,10 @@
+.list__title{
+    font-size: min(7vw,36px);
+
+}
+
+.list__cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

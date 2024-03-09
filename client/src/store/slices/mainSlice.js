@@ -2,7 +2,8 @@ import {createSlice} from '@reduxjs/toolkit';
 
 
 export const initialState = {
-    movies:[]
+    movies:[],
+    activePage:'home'
 }
 
 export const mainSlice = createSlice({
@@ -31,9 +32,12 @@ reducers:{
         }
        
         
+    },
+    setActivePage:(state,action)=>{
+        state.activePage = action.payload
     }
 }
 })
 
-export const {setMovies,setFavourite} = mainSlice.actions;
+export const {setMovies,setFavourite,setActivePage} = mainSlice.actions;
 export default mainSlice.reducer
