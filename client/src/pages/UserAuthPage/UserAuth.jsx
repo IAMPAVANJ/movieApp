@@ -1,9 +1,15 @@
 import React from 'react'
-
+import {useSelector} from 'react-redux';
+import "./userAuth.css"
+import Login from '../../components/auth/login/login'
+import SignUp from '../../components/auth/signUp/signUp';
 const UserAuth = () => {
+  const isUser = useSelector((state)=>state.mainSlice.loginOrSignup)
   return (
-    <div className='container' style={{backgroundColor:'bisque'}}>
-         <video src="https://res.cloudinary.com/mycloudpavan/video/upload/v1700537637/video%20samples/pexels-dan-butt-19115436_2160p_sayq4y.mp4" autoPlay muted loop className='videoCover'></video>
+    <div className='AuthContainer' style={{backgroundColor:'#2b2d42'}}>  
+    {    isUser ? 
+       <Login/>
+        : <SignUp/>}
     </div>
   )
 }

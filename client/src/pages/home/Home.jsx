@@ -40,7 +40,11 @@ const Home = () => {
                                 {movie ? movie.release_date:''}
                                 <span className="posterImage__rating">
                                     {" "}{movie ? movie.vote_average.toFixed(1) : ''}{" "}
-                                    <i className='fa fa-star favouriteStar' title="Add To favourite"/>&nbsp;&nbsp;
+                                    <i className='fa fa-star favouriteStar'
+                                         data-bs-toggle="tooltip" data-bs-placement="top"
+                                         data-bs-custom-class="custom-tooltip"
+                                         data-bs-title="Add To favourite"
+                                        />&nbsp;&nbsp;
                                     <i className='fa fa-bookmark' title="Add to Watchlist"/>
                                 </span>
                             </div>

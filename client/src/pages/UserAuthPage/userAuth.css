@@ -1,8 +1,21 @@
-.videoCover{
-    position: absolute;
+.AuthContainer{
+    height: 100%;
     width: 100%;
-    height:100%;
-    object-fit: cover;
+    position: absolute;
+    object-fit: fill;
     opacity: 0.8;
-    background-image: url('https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2016/10/horrorpostercollage.jpg?w=2220&ssl=1');
+    display: grid;
+    background-image: url('https://images.pexels.com/photos/2507025/pexels-photo-2507025.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
 }
+
+
+/* @media (max-aspect-ratio:16/9){
+    .videoCover{
+        width: auto;
+        height: auto;
+    }
+} */

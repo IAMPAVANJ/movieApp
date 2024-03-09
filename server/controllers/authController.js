@@ -1,14 +1,13 @@
 
-
 const User = require('../Modal/userModal');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const register = async(req,res)=>{
-    const {name,email,password} = req.body;
+    const {name,email,password,image} = req.body;
     try{
         let IsExistingUser = await User.findOne({email:email});
         if(IsExistingUser){
-            return res.status(200).json({
+            return res.status(400).json({
                 message:"User Already Exists"
             })
         }else{
@@ -43,7 +42,7 @@ const login = async(req,res)=>{
                     Message:"Incorrect Password"
                 })
             }else{
-                const token = jwt.sign({id:IsUser._id,name:IsUser.name,email:IsUser.email},process.env.SECRETKEY,{expiresIn:60*60*1000})
+                const token = jwt.sign({id:IsUser._id,name:IsUser.name,email:IsUser.email},"secretkey",{expiresIn:60*60*1000})
                 const {password,...otherDetails} = IsUser._doc;
                 return res.status(200).json({
                     Message:"Successfully Logged In",
