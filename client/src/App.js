@@ -5,7 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import axios from 'axios';
 import { setMovies } from './store/slices/mainSlice';
-import UserAuth from './pages/UserAuthPage/UserAuth';
+import Login from './components/auth/login/login';
+import SignUp from './components/auth/signUp/signUp';
 const FavouriteMovies = lazy(()=>import('./pages/favourite/FavouriteMovies'))
 const WatchlistMovies = lazy(()=>import('./pages/watchlist/WatchlistMovies'))
 function App() {
@@ -28,7 +29,8 @@ function App() {
       <BrowserRouter>
         <Suspense>
         <Routes>
-          <Route path="/" element={<UserAuth/>}/>
+          <Route path="/" element={<Login/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
           <Route path='/home' element={<Home />} />
           <Route path='movie/:id' element={<p>movie id</p>} />
           <Route path='movies/:type' element={<p>movie sdadid</p>} />

@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setLoginOrSignup } from '../../../store/slices/mainSlice';
 import Swal from 'sweetalert2'
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { Blocks } from 'react-loader-spinner'
 const SignUp = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false)
   const [userData, setUserData] = useState({ email: "", password: "", name: "", image: "" });
-  const dispatch = useDispatch();
-  const handleIt = () => dispatch(setLoginOrSignup(true));
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(userData.email=="" || userData.name=="" || userData.password == ""){
+    if (userData.email == "" || userData.name == "" || userData.password == "") {
       Swal.fire({
         position: "top",
         icon: "error",
@@ -20,37 +17,36 @@ const SignUp = () => {
         showConfirmButton: false,
         timer: 1200
       });
-      
-    }else{
-      axios.post("http://localhost:8080/user/register",userData)
-      .then((res)=>{
-        console.log(res);
-        Swal.fire({
-          position: "top",
-          icon: "success",
-          title: res?.data?.message,
-          showConfirmButton: false,
-          timer: 1200
+
+    } else {
+      axios.post("http://localhost:8080/user/register", userData)
+        .then((res) => {
+          console.log(res);
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: res?.data?.message,
+            showConfirmButton: false,
+            timer: 1200
+          })
         })
-        handleIt();
-      })
-      .catch((err)=>{
-        Swal.fire({
-          position: "top",
-          icon: "error",
-          title: err?.response?.data?.message,
-          showConfirmButton: false,
-          timer: 1200
+        .catch((err) => {
+          Swal.fire({
+            position: "top",
+            icon: "error",
+            title: err?.response?.data?.message,
+            showConfirmButton: false,
+            timer: 1200
+          })
+          console.log(err)
         })
-        console.log(err)
-      })
     }
     console.log(userData)
   }
 
   const postDetails = (pics) => {
     setLoading(true)
-    
+
     if (pics === undefined) {
       Swal.fire({
         position: "top-end",
@@ -68,7 +64,7 @@ const SignUp = () => {
       data.append("cloud_name", "mycloudpavan")
       axios.post("https://api.cloudinary.com/v1_1/mycloudpavan/image/upload", data)
         .then(data => {
-          setUserData({...userData,image:data.data.url.toString()})
+          setUserData({ ...userData, image: data.data.url.toString() })
           setLoading(false);
           Swal.fire({
             position: "top-center",
@@ -90,7 +86,7 @@ const SignUp = () => {
         showConfirmButton: false,
         timer: 1500
       });
-      
+
       setLoading(false);
       return;
     }
@@ -99,45 +95,49 @@ const SignUp = () => {
 
 
   return (
-    <div className='mainLoginDiv'>
-      <div
-        style={{
-          fontWeight: 600,
-          maxWidth: "200px",
-          margin: "20px",
-          fontSize: "26px",
-          marginTop: "2rem",
-          background: "#ffb703",
-          color: "azure",
-          padding: "1px 4px",
-          borderRadius: "5px",
-          placeSelf: 'center'
-        }}
-      >PavanFlix</div>
-      <form class="login-form">
-        <input type="text" required placeholder="Username" name="username" onChange={(e) => { setUserData({ ...userData, name: e.target.value }) }} value={userData?.name}/>
-        <input type="email" required placeholder="Email" name="email" onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }} value={userData?.email} />
-        <input type="file" placeholder="ChooseImage" name="Image" accept="image/*" onChange={(e) => {
-          postDetails(e.target.files[0]);
-        }} />
-        <input required type={show?"text":"password"} placeholder="Password" name="password" onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} value={userData?.password} />
-        {show ? <img src="./assets/authAssets/eyes-4.svg" id="togglePassword" onClick={() => setShow(!show)} /> : <img src='./assets/authAssets/closed-eyes.svg' id="togglePassword" onClick={() => setShow(!show)} />}
+    <div className='AuthContainer' style={{ backgroundColor: '#2b2d42' }}>
+      <div className='mainLoginDiv'>
+        <div
+          style={{
+            fontWeight: 600,
+            maxWidth: "200px",
+            margin: "20px",
+            fontSize: "26px",
+            marginTop: "2rem",
+            background: "#ffb703",
+            color: "azure",
+            padding: "1px 4px",
+            borderRadius: "5px",
+            placeSelf: 'center'
+          }}
+        >PavanFlix</div>
+        <form class="login-form">
+          <input type="text" required placeholder="Username" name="username" onChange={(e) => { setUserData({ ...userData, name: e.target.value }) }} value={userData?.name} />
+          <input type="email" required placeholder="Email" name="email" onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }} value={userData?.email} />
+          <input type="file" placeholder="ChooseImage" name="Image" accept="image/*" onChange={(e) => {
+            postDetails(e.target.files[0]);
+          }} />
+          <input required type={show ? "text" : "password"} placeholder="Password" name="password" onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} value={userData?.password} />
+          {show ? <img src="./assets/authAssets/eyes-4.svg" id="togglePassword" onClick={() => setShow(!show)} /> : <img src='./assets/authAssets/closed-eyes.svg' id="togglePassword" onClick={() => setShow(!show)} />}
 
 
-        {loading ? <Blocks
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="blocks-loading"
-          wrapperClass="blocks-wrapper"
-          visible={loading}
-        /> : <button className='login-form-btn' onClick={(e) => handleSubmit(e)}>Register</button>}
-      </form>
-      <p className='register-btn' onClick={handleIt}>
-        Go to login
-      </p>
+          {loading ? <Blocks
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="blocks-loading"
+            wrapperClass="blocks-wrapper"
+            visible={loading}
+          /> : <button className='login-form-btn' onClick={(e) => handleSubmit(e)}>Register</button>}
+        </form>
+        <Link to="/" style={{textDecoration:'none'}}>
+        <p className='register-btn'>
+          Go to login
+        </p>
+        </Link>
+      </div>
     </div>
   )
 }
 
-export default SignUp
+export default SignUp;

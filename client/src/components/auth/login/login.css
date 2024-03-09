@@ -68,3 +68,16 @@
     color: azure;
     /* text-shadow: 0px 0px 5px #90e0ef, 0px 0px 5px #90e0ef; */
   }
+  .AuthContainer{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    object-fit: fill;
+    opacity: 0.8;
+    display: grid;
+    background-image: url('https://images.pexels.com/photos/2507025/pexels-photo-2507025.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+}
