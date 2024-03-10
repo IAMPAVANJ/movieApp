@@ -17,4 +17,28 @@
   font-weight: 600;
   margin:clamp(80px 20px 100px)
 }
+.modal-body{
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal-title{
+  color: black;
+  font-weight: 600;
+  font-size: large;
+}
+.modal-header{
+  text-align: center;
+}
+.modalName{
+  font-weight: 600;
+  font-size: 24px;
+}
+.modalEmail{
+  font-weight: 500;
+  font-size: 20px;
+  font-style: italic;
+}
   

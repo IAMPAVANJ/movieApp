@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import Skeleton , {SkeletonTheme} from 'react-loading-skeleton';
 import {useSelector,useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import "./casd.css";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -12,9 +13,9 @@ const Card = ({movie}) => {
     const [isLoading,setIsLoading] = useState(true);
     const favouriteMovies = useSelector((state)=>state.mainSlice.favoriteMovie);
     const watchlistMovie = useSelector((state)=>state.mainSlice.watchlistMovie);
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {_id} = JSON.parse(localStorage.getItem('userData'));
+    const user = JSON.parse(localStorage.getItem('userData'));
     function checkfav(movie){
         if(favouriteMovies.length == 0){
             return false
@@ -32,12 +33,17 @@ const Card = ({movie}) => {
         }
     }
     
+    useEffect(()=>{
+        if(user=={}){
+            navigate("/")
+        }
+    },[])
 
     const handleFavourite = ()=>{
         if(checkfav(movie)==false){
             
                     let Obj = {
-                        userId:_id,...movie
+                        userId:user?._id,...movie
                     }
                     axios.post('http://localhost:8080/movies/add-favourite-movies',Obj)
                     .then((res)=>{
@@ -50,7 +56,7 @@ const Card = ({movie}) => {
 
         }else{
             let obj = {
-                userId:_id,
+                userId:user?._id,
                 id:movie.id
             }
             axios.delete(`http://localhost:8080/movies/delete-favourite-movies/${movie._id}`)
@@ -68,7 +74,7 @@ const Card = ({movie}) => {
         if(checkWatch(movie)==false){
             
                     let Obj = {
-                        userId:_id,...movie
+                        userId:user?._id,...movie
                     }
                     axios.post('http://localhost:8080/movies/add-watchlist-movies',Obj)
                     .then((res)=>{
@@ -81,7 +87,7 @@ const Card = ({movie}) => {
 
         }else{
             let obj = {
-                userId:_id,
+                userId:user?._id,
                 id:movie.id
             }
             axios.delete(`http://localhost:8080/movies/delete-watchlist-movies/${movie._id}`)

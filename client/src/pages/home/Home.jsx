@@ -84,8 +84,7 @@ const Home = () => {
                                 <span className="posterImage__rating">
                                     {" "}{movie ? movie.vote_average.toFixed(1) : ''}{" "}
                                     <i className='fa fa-star favouriteStar' title='Rating'
-                                        />&nbsp;&nbsp;
-                                    <i className='fa fa-bookmark' title="Add to Watchlist"/>
+                                        />
                                 </span>
                             </div>
                             <div className='posterImage__description'>{movie ? movie.overview : ''}</div>

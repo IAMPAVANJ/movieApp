@@ -9,11 +9,11 @@ import { DNA } from 'react-loader-spinner';
 const WatchlistMovies = () => {
     const dispatch = useDispatch();
     const [loading,setLoading] = useState(false);
-    const {_id} = JSON.parse(localStorage.getItem('userData'));
+    const user = JSON.parse(localStorage.getItem('userData'));
     const watchlistMovie = useSelector((state)=>state.mainSlice.watchlistMovie);
     useEffect(()=>{
       setLoading(true);
-      axios.get(`http://localhost:8080/movies/watchlist-movies/${_id}`)
+      axios.get(`http://localhost:8080/movies/watchlist-movies/${user?._id}`)
       .then((res)=>{
         setLoading(false)
         dispatch(setAllWatchlistMovies(res?.data?.AllWatchlistMovies))
@@ -25,7 +25,7 @@ const WatchlistMovies = () => {
         dispatch(setActivePage('watchlist'));
     },[])
   return (
-    <div>
+    <div className='favouriteMainPage'>
       <Navbar/>
       {watchlistMovie.length==0?
       <Link to="/home" className='btn-favmovies'>
@@ -37,7 +37,7 @@ const WatchlistMovies = () => {
                         wrapperStyle={{}}
                         wrapperClass="dna-wrapper"
                     />:
-          <button className='btn__favmovies'>Add to Favourite<i className='fa fa-heart'/></button>
+          <button className='btn__favmovies'>Add to Wishlist &nbsp;<i className='fa fa-bookmark' style={{color:'blue'}}/></button>
         }
 
       </Link>

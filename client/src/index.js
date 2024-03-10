@@ -4,7 +4,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle";
 import 'react-responsive-pagination/themes/classic.css';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 import 'animate.css';
 import App from './App';
 import {Provider} from "react-redux";

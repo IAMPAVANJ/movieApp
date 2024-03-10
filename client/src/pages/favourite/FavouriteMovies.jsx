@@ -4,17 +4,19 @@ import { setActivePage, setAllFavouriteMovies } from '../../store/slices/mainSli
 import Navbar from '../../components/NavBar/Navbar';
 import MovieList from '../../components/movielist/movieList';
 import axios from 'axios';
+import {Navigate} from 'react-router-dom';
 import"./favourite.css";
 import { Link } from 'react-router-dom';
 import { DNA } from 'react-loader-spinner';
 const FavouriteMovies = () => {
     const dispatch = useDispatch();
     const [loading,setLoading] = useState(false);
-    const {_id} = JSON.parse(localStorage.getItem('userData'));
+    const user = JSON.parse(localStorage.getItem('userData'));
+    console.log("user",user)
     const favMovies = useSelector((state)=>state.mainSlice.favoriteMovie)    
     useEffect(()=>{
       setLoading(true);
-      axios.get(`http://localhost:8080/movies/favourite-movies/${_id}`)
+      axios.get(`http://localhost:8080/movies/favourite-movies/${user?._id}`)
       .then((res)=>{
         setLoading(false)
         dispatch(setAllFavouriteMovies(res?.data?.AllFavouriteMovies))
@@ -23,6 +25,9 @@ const FavouriteMovies = () => {
         console.log(err)
         setLoading(false)
       })
+      if(!user){
+        <Navigate to="/"/>
+      }
         dispatch(setActivePage('favourite'));
     },[])
   

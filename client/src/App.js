@@ -7,6 +7,8 @@ import axios from 'axios';
 import { setMovies } from './store/slices/mainSlice';
 import Login from './components/auth/login/login';
 import SignUp from './components/auth/signUp/signUp';
+import MovieDetail from './pages/movieDetails/movieDetail';
+import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 const FavouriteMovies = lazy(()=>import('./pages/favourite/FavouriteMovies'))
 const WatchlistMovies = lazy(()=>import('./pages/watchlist/WatchlistMovies'))
 function App() {
@@ -34,8 +36,9 @@ function App() {
           <Route path="/" element={<Login/>}/>
           <Route path="/signup" element={<SignUp/>}/>
           <Route path='/home' element={<Home />} />
-          <Route path='/movie/:id' element={<p>movie id</p>} />/
+          <Route path='/movie/:id' element={<MovieDetail/>} />/
           <Route path="/favourite" element={<FavouriteMovies/>} />
+          <Route element={<ProtectedRoutes/>}/>
           <Route path="/watchlist" element={<WatchlistMovies/>} />
           <Route path='*' element={<p>Error Page</p>} />
         </Routes>
