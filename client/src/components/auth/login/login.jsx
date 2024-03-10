@@ -24,7 +24,7 @@ const Login = () => {
         timer: 1200
       });
     } else {
-      axios.post("http://localhost:8080/user/login", userData)
+      axios.post("https://movieapp-itix.onrender.com/user/login", userData)
         .then((res) => {
           console.log(res);
           // dispatch(setUserData(res?.data?.otherDetails))

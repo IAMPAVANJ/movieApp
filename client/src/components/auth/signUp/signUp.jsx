@@ -32,7 +32,7 @@ const SignUp = () => {
         timer: 1200
       });
     }else {
-      axios.post("http://localhost:8080/user/register", userData)
+      axios.post("https://movieapp-itix.onrender.com/user/register", userData)
         .then((res) => {
           console.log(res);
           Swal.fire({

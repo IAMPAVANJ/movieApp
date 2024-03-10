@@ -16,7 +16,7 @@ const FavouriteMovies = () => {
     const favMovies = useSelector((state)=>state.mainSlice.favoriteMovie)    
     useEffect(()=>{
       setLoading(true);
-      axios.get(`http://localhost:8080/movies/favourite-movies/${user?._id}`)
+      axios.get(`https://movieapp-itix.onrender.com/movies/favourite-movies/${user?._id}`)
       .then((res)=>{
         setLoading(false)
         dispatch(setAllFavouriteMovies(res?.data?.AllFavouriteMovies))

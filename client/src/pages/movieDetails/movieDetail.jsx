@@ -33,7 +33,7 @@ const MovieDetail = () => {
                     let Obj = {
                         userId:user?._id,...movie
                     }
-                    axios.post('http://localhost:8080/movies/add-favourite-movies',Obj)
+                    axios.post('https://movieapp-itix.onrender.com/movies/add-favourite-movies',Obj)
                     .then((res)=>{
                         console.log(res)
                         dispatch(setOneFavouriteMovie(Obj))
@@ -47,12 +47,12 @@ const MovieDetail = () => {
                 userId:user?._id,
                 id:movie.id
             }
-            axios.post("http://localhost:8080/movies/single-favourite-movie",obj)
+            axios.post("https://movieapp-itix.onrender.com/movies/single-favourite-movie",obj)
             .then((res)=>{
                 let id = res?.data?.data?._id;
             
                 if(id!==""){
-                    axios.delete(`http://localhost:8080/movies/delete-favourite-movies/${id}`)
+                    axios.delete(`https://movieapp-itix.onrender.com/movies/delete-favourite-movies/${id}`)
                             .then((res)=>{
                                 dispatch(deleteFromFavourite(obj))
                             })
@@ -77,7 +77,7 @@ const MovieDetail = () => {
                     }
 
 
-                    axios.post('http://localhost:8080/movies/add-watchlist-movies',Obj)
+                    axios.post('https://movieapp-itix.onrender.com/movies/add-watchlist-movies',Obj)
                     .then((res)=>{
                         console.log(res)
                         dispatch(setOneWatchlistMovie(Obj))
@@ -93,10 +93,10 @@ const MovieDetail = () => {
             }
 
 
-            axios.post('http://localhost:8080/movies/single-watchlist-movie',obj)
+            axios.post('https://movieapp-itix.onrender.com/movies/single-watchlist-movie',obj)
             .then((res)=>{
                 let id  = res?.data?.data?._id;
-                axios.delete(`http://localhost:8080/movies/delete-watchlist-movies/${id}`)
+                axios.delete(`https://movieapp-itix.onrender.com/movies/delete-watchlist-movies/${id}`)
                         .then((res)=>{
                             console.log(res)
                             dispatch(deleteFromWatchlist(obj))
