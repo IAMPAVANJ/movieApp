@@ -26,12 +26,12 @@ const Navbar = () => {
               style={{
                 fontWeight: 600,
                 margin: "1px",
-                background: "#ffb703",
+                background: "#ae2012",
                 color: "azure",
                 padding: "1px 4px",
                 borderRadius: "5px"
               }}
-            >PavanFlix</div>
+            >MovieFlix</div>
           </p>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

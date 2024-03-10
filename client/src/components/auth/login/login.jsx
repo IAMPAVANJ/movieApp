@@ -79,13 +79,13 @@ const Login = () => {
             margin: "20px",
             fontSize: "26px",
             marginTop: "2rem",
-            background: "#ffb703",
+            background: "#ae2012",
             color: "azure",
             padding: "1px 4px",
             borderRadius: "5px",
             placeSelf: 'center'
           }}
-        >PavanFlix</div>
+        >MovieFlix</div>
         <form className="login-form">
           <input type="email" placeholder="Email" name="username" onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }} value={userData?.email} />
           <input type={show ? "text" : "password"} placeholder="Password" name="password" onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} value={userData?.password} />

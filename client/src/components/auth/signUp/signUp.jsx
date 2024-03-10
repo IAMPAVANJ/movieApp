@@ -133,13 +133,13 @@ const SignUp = () => {
             margin: "20px",
             fontSize: "26px",
             marginTop: "2rem",
-            background: "#ffb703",
+            background: "#ae2012",
             color: "azure",
             padding: "1px 4px",
             borderRadius: "5px",
             placeSelf: 'center'
           }}
-        >PavanFlix</div>
+        >MovieFlix</div>
         <form className="login-form">
           <input type="text" required placeholder="Username" name="username" onChange={(e) => { setUserData({ ...userData, name: e.target.value }) }} value={userData?.name} />
           <input type="email" required placeholder="Email" name="email" onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }} value={userData?.email} />
