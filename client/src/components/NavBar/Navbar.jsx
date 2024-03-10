@@ -54,7 +54,7 @@ const Navbar = () => {
               </Link>
             </ul>
             {activePage=='home' &&<GenreDropdown/>}
-            <li  class="nav-item me-5 cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{cursor:'pointer'}}
+            <li  className="nav-item me-5 cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{cursor:'pointer'}}
             >
               <img src={user.image!==""?user.image :'https://toppng.com//public/uploads/preview/donna-picarro-dummy-avatar-115633298255iautrofxa.png'}
                 alt='user'
@@ -65,14 +65,14 @@ const Navbar = () => {
                 }}
               />
               
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">Profile</h5>
+                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <img src={user.image !== "" ? user.image : 'https://toppng.com//public/uploads/preview/donna-picarro-dummy-avatar-115633298255iautrofxa.png'}
                         alt='user'
                         style={{
@@ -81,14 +81,23 @@ const Navbar = () => {
                           borderRadius: "50%"
                         }}
                       />
-                      <div className='modalName'>{user.name}</div>
-                      <div className='modalEmail'>{user.email}</div>
+                      <div className='modalName'>{user?.name}</div>
+                      <div className='modalEmail'><i className='fa fa-envelope-open-text'/>&nbsp;&nbsp;{user?.email}</div>
+                      <div className='modalNumber'>{user.number && <i className='fa fa-phone'/>}{user?.number}</div>
+                      <div>
+                        <Link to="/favourite">
+                          <button className='btn btn-danger'>Go To Favourites</button>
+                        </Link>
+                        <Link to="/watchlist">
+                         <button className='btn btn-primary ms-2'>Go To Watchlist</button>
+                        </Link>
+                      </div>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <Link to="/">
                         <button className='btn btn-danger'>Log out</button>
                       </Link>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>

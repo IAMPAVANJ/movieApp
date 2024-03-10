@@ -93,7 +93,12 @@
     justify-content: space-between;
     width: 75%;
 }
-
+.movie__rating{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    justify-content: space-around;
+}
 .movie__heading {
     font-size: 2.2rem;
     font-weight: 500;

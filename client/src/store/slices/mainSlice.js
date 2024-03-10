@@ -53,7 +53,6 @@ reducers:{
     },
     deleteFromWatchlist:(state,action)=>{
         const data = state.watchlistMovie.filter((movie)=>movie.id !== action.payload.id);
-        console.log(data,"favourite")
         state.watchlistMovie = data
     },
 

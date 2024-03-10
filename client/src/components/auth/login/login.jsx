@@ -68,7 +68,7 @@ const Login = () => {
             placeSelf: 'center'
           }}
         >PavanFlix</div>
-        <form class="login-form">
+        <form className="login-form">
           <input type="email" placeholder="Email" name="username" onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }} value={userData?.email} />
           <input type={show ? "text" : "password"} placeholder="Password" name="password" onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} value={userData?.password} />
           {show ? <img src="./assets/authAssets/eyes-4.svg" id="togglePassword" onClick={() => setShow(!show)} /> : <img src='./assets/authAssets/closed-eyes.svg' id="togglePassword" onClick={() => setShow(!show)} />}

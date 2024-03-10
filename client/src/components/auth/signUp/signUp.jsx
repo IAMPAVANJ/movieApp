@@ -6,14 +6,14 @@ import { Blocks } from 'react-loader-spinner'
 const SignUp = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false)
-  const [userData, setUserData] = useState({ email: "", password: "", name: "", image: "" });
+  const [userData, setUserData] = useState({ email: "", password: "", name: "", image: "",number:"" });
   const navigate = useNavigate();
   useEffect(()=>{
     localStorage.clear();
   },[])
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userData.email == "" || userData.name == "" || userData.password == "") {
+    if (userData.email == "" || userData.name == "" || userData.password == "" || userData.number=="") {
       Swal.fire({
         position: "top",
         icon: "error",
@@ -22,7 +22,16 @@ const SignUp = () => {
         timer: 1200
       });
 
-    } else {
+    }
+    else if(userData.number.length>10 || userData.number.length<10){
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Number Must be 10 digit",
+        showConfirmButton: false,
+        timer: 1200
+      });
+    }else {
       axios.post("http://localhost:8080/user/register", userData)
         .then((res) => {
           console.log(res);
@@ -98,7 +107,6 @@ const SignUp = () => {
   }
 
 
-
   return (
     <div className='AuthContainer' style={{ backgroundColor: '#2b2d42' }}>
       <div className='mainLoginDiv animate__animated animate__rubberBand'>
@@ -116,9 +124,10 @@ const SignUp = () => {
             placeSelf: 'center'
           }}
         >PavanFlix</div>
-        <form class="login-form">
+        <form className="login-form">
           <input type="text" required placeholder="Username" name="username" onChange={(e) => { setUserData({ ...userData, name: e.target.value }) }} value={userData?.name} />
           <input type="email" required placeholder="Email" name="email" onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }} value={userData?.email} />
+          <input type="number" required placeholder="Mobile No" name="number" onChange={(e) => { setUserData({ ...userData, number: e.target.value }) }} value={userData?.number} maxLength={10} minLength={10}/>
           <input type="file" placeholder="ChooseImage" name="Image" accept="image/*" onChange={(e) => {
             postDetails(e.target.files[0]);
           }} />

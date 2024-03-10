@@ -52,14 +52,12 @@ const getAllFavouriteMovie = async(req,res)=>{
 }
 
 const getOneFavouriteMovie = async(req,res)=>{
-    const {userId} = req.body;
-    console.log(userId)
     try{
         const data = await Favourite.findOne({$and:[
             {userId:req.body.userId},
             {id:req.body.id}
         ]})
-        console.log(data)
+        
         if(data){
             return res.status(200).json({
                 success:true,

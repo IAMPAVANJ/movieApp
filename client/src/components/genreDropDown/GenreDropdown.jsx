@@ -17,17 +17,17 @@ const GenreDropdown = () => {
             })
     }
   return (
-      <div class="dropdown show">
-          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div className="dropdown show">
+          <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {genre==""?'Sort Movies By':genre[0]}
           </a>
 
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <p class="dropdown-item" onClick={()=>updateGenre('Release Date','primary_release_date.asc')}>Release Date</p>
-              <p class="dropdown-item" onClick={()=>updateGenre('Popularity(Low to High)','popularity.asc')}>Popularity{" "}<i className='fa fa-arrow-up'/></p>
-              <p class="dropdown-item" onClick={()=>updateGenre('Popularity(High to Low)','popularity.desc')}>Popularity{" "}<i className='fa fa-arrow-down'/></p>
-              <p class="dropdown-item" onClick={()=>updateGenre('Rating(Low to High)','vote_average.asc')}>Rating{" "}<i className='fa fa-arrow-up'/></p>
-              <p class="dropdown-item" onClick={()=>updateGenre('Rating(High to Low)','vote_average.desc')}>Rating{" "}<i className='fa fa-arrow-down'/></p>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <p className="dropdown-item" onClick={()=>updateGenre('Release Date','primary_release_date.asc')}>Release Date</p>
+              <p className="dropdown-item" onClick={()=>updateGenre('Popularity(Low to High)','popularity.asc')}>Popularity{" "}<i className='fa fa-arrow-up'/></p>
+              <p className="dropdown-item" onClick={()=>updateGenre('Popularity(High to Low)','popularity.desc')}>Popularity{" "}<i className='fa fa-arrow-down'/></p>
+              <p className="dropdown-item" onClick={()=>updateGenre('Rating(Low to High)','vote_average.asc')}>Rating{" "}<i className='fa fa-arrow-up'/></p>
+              <p className="dropdown-item" onClick={()=>updateGenre('Rating(High to Low)','vote_average.desc')}>Rating{" "}<i className='fa fa-arrow-down'/></p>
           </div>
       </div>
   )
