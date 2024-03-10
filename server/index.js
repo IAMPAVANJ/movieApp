@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const UserRoutes = require('./Routes/userRoutes');
+const FavouriteMovies = require("./Routes/favouriteRoute");
+const WatchlistMovies = require("./Routes/watchlistRoutes");
 const connect = require('./dbConnection/Connection');
 const port = 8080;
 const dotenv = require('dotenv');
@@ -13,6 +15,8 @@ app.use(express.urlencoded({extended:false}));
 connect();
 
 app.use("/user",UserRoutes);
+app.use("/movies",FavouriteMovies);
+app.use("/movies",WatchlistMovies)
 
 
 

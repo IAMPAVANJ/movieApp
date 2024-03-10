@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -7,6 +7,9 @@ const SignUp = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false)
   const [userData, setUserData] = useState({ email: "", password: "", name: "", image: "" });
+  useEffect(()=>{
+    localStorage.clear();
+  },[])
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userData.email == "" || userData.name == "" || userData.password == "") {
@@ -29,6 +32,7 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1200
           })
+          
         })
         .catch((err) => {
           Swal.fire({
@@ -96,7 +100,7 @@ const SignUp = () => {
 
   return (
     <div className='AuthContainer' style={{ backgroundColor: '#2b2d42' }}>
-      <div className='mainLoginDiv'>
+      <div className='mainLoginDiv animate__animated animate__rubberBand'>
         <div
           style={{
             fontWeight: 600,

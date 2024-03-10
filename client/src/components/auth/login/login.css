@@ -17,6 +17,7 @@
     width: 300px;
     margin: 0 auto;
     padding: 10px;
+    transition: ease-in-out;
   }
   .login-form input[type='text'],
   .login-form input[type='email'],
@@ -41,7 +42,17 @@
     margin: 10px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 80%;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: 600;
+    transition: ease-in-out .5s;
+  }
+  input::placeholder{
+    color: #fca311;
+  }
+  .login-form-btn:hover{
+    box-shadow: 0 0 5px cyan, 0 0 10px cyan;
   }
   
   @media only screen and (max-width: 600px) {

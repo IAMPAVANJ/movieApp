@@ -1,10 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import React, { useEffect } from 'react'
+import { Link,useNavigate } from 'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux';
 import "./navbar.css";
-
+import { setActivePage } from '../../store/slices/mainSlice';
+import GenreDropdown from '../genreDropDown/GenreDropdown';
 const Navbar = () => {
   const activePage = useSelector((state)=>state.mainSlice.activePage);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    let data = localStorage.getItem('userData');
+        if(!data){
+        navigate("/")
+        }
+},[])
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: "#023047" }}>
@@ -42,10 +51,7 @@ const Navbar = () => {
               </li>
               </Link>
             </ul>
-            {/* <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-light" type="submit">Search</button>
-            </form> */}
+            {activePage=='home' &&<GenreDropdown/>}
             <li className="nav-item me-5">
               <img src='https://toppng.com//public/uploads/preview/donna-picarro-dummy-avatar-115633298255iautrofxa.png'
                 alt='user'

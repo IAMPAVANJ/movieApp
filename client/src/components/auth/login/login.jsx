@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./login.css"
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 const Login = () => {
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
-
+  const  navigate = useNavigate();
+  useEffect(()=>{
+    localStorage.clear();
+  },[])
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userData.email == "" || userData.password == "") {
@@ -28,14 +32,14 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1200
           });
-          localStorage.setItem('userdate', JSON.stringify(res?.data?.otherDetails))
-
+          localStorage.setItem('userData', JSON.stringify(res?.data?.otherDetails))
+          navigate("/home")
         })
         .catch((err) => {
           Swal.fire({
             position: "top",
             icon: "error",
-            title: err?.response?.data?.message,
+            title: err?.response?.data?.Message,
             showConfirmButton: false,
             timer: 1200
           })
@@ -46,7 +50,7 @@ const Login = () => {
   return (
     <div className='AuthContainer' style={{ backgroundColor: '#2b2d42' }}>
 
-      <div className='mainLoginDiv'>
+      <div className='mainLoginDiv animate__animated animate__rubberBand'>
         <div
           style={{
             fontWeight: 600,

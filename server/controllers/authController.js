@@ -36,9 +36,10 @@ const login = async(req,res)=>{
         const IsUser = await User.findOne({email:email})
         if(IsUser){
 
-            const IsCorrectPassword = bcrypt.compare(password,IsUser.password)
+            const IsCorrectPassword = await bcrypt.compare(password,IsUser.password);
+
             if(!IsCorrectPassword){
-                return res.status(200).json({
+                return res.status(400).json({
                     Message:"Incorrect Password"
                 })
             }else{
@@ -51,7 +52,7 @@ const login = async(req,res)=>{
                 })
             }
         }else{
-            return res.status(200).json({
+            return res.status(400).json({
                 Message:"Check Email Address"
             })
         }

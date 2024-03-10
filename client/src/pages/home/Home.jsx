@@ -1,25 +1,58 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import "./home.css";
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/NavBar/Navbar'
-import { setActivePage } from '../../store/slices/mainSlice';
 import MovieList from '../../components/movielist/movieList';
+import { setActivePage } from '../../store/slices/mainSlice';
+import { DNA } from 'react-loader-spinner';
 const Home = () => {
     const dispatch = useDispatch();
     const data = useSelector((state)=>state?.mainSlice?.movies);
-    const carouselData = data.slice(11);
-
+    const genre = useSelector((state)=>state?.mainSlice?.genre);
+    function getCarouselData(){
+        if(genre[0]=="Release Date"){
+            return data.slice(0,5);
+        }
+        else if(genre[0]=="Popularity(Low to High)"){
+            return data.slice(5,10);
+        }
+        else if(genre[0]=="Popularity(High to Low)"){
+            return data.slice(10,15);
+        }
+        else if(genre[0]=="Rating(Low to High)"){
+            return data.slice(15,20);
+        }else{
+            return data.slice(12,17)
+        }
+        
+        
+        
+    }
+    const carouselData = getCarouselData();
+    const [loading,setLoading] = useState(false);
     useEffect(()=>{
         dispatch(setActivePage('home'));
     },[])
 
+    useEffect(()=>{
+        setLoading(true);
+        setTimeout(()=>{
+            setLoading(false)
+        },1200)
+        
+    },[data])
+
+    
+
     return (
     <div className='poster'>
         <Navbar/>
-        <Carousel
+       {!loading ?
+       <>
+       <Carousel
          showThumbs={false}
          autoFocus={true}
          autoPlay={true}
@@ -57,6 +90,19 @@ const Home = () => {
         <div>
             <MovieList data={data}/>
         </div>
+        </>
+        :
+        <div className='dnaSpinner'>
+                    <DNA
+                        visible={loading}
+                        height="80"
+                        width="80"
+                        ariaLabel="dna-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="dna-wrapper"
+                    />
+        </div>
+        }
     </div>
   )
 }

@@ -1,3 +1,11 @@
+.poster{
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+.dnaSpinner{
+    place-self: center;
+}
 .posterImage{
     height: min(100vh,600px);
 }

@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import './App.css';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import axios from 'axios';
@@ -12,15 +12,17 @@ const WatchlistMovies = lazy(()=>import('./pages/watchlist/WatchlistMovies'))
 function App() {
 
   const dispatch = useDispatch();
-  
+  const GenreType = useSelector((state)=>state.mainSlice.genre); 
+
   useEffect(()=>{
-    axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4aafdefd9b32d27809998bc3057a9681&page=2')
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=4aafdefd9b32d27809998bc3057a9681&page=2&sort_by=${GenreType[1]}`)
     .then((res)=>{
       dispatch(setMovies(res?.data?.results))
     })
     .catch((err)=>{
       console.log(err)
     })
+
   },[])
 
 

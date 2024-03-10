@@ -5,7 +5,8 @@ export const initialState = {
     movies:[],
     activePage:'home',
     loginOrSignup:true,
-    userData:{}
+    userData:{},
+    genre:[],
 }
 
 export const mainSlice = createSlice({
@@ -15,8 +16,10 @@ reducers:{
     setMovies:(state,action)=>{
         state.movies=action.payload
     },
+    setGenre:(state,action)=>{
+        state.genre=action.payload
+    },
     setFavourite:(state,action)=>{
-        console.log(action.payload.id)
         function check(){
             for(let i in state.movies){
                 if(action.payload.id==state.movies[i].id){
@@ -50,5 +53,7 @@ export const {
     setFavourite,
     setActivePage,
     setLoginOrSignup,
-    setUserData} = mainSlice.actions;
+    setGenre,
+    setUserData
+    } = mainSlice.actions;
 export default mainSlice.reducer

@@ -1,10 +1,17 @@
 .list__title{
     font-size: min(7vw,36px);
-
+    color: aliceblue;
+    font-weight: 500;
+    margin-left: 20px;
+    margin-left: 0.25rem;
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-align: center;
 }
 
 .list__cards{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 20px;
 }
