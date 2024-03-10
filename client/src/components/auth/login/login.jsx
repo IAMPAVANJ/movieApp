@@ -5,10 +5,12 @@ import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import { MagnifyingGlass } from 'react-loader-spinner';
 const Login = () => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
+  const [isPageLoading,setIsPageLoading] = useState(false);
   const  navigate = useNavigate();
   useEffect(()=>{
     localStorage.clear();
@@ -24,10 +26,9 @@ const Login = () => {
         timer: 1200
       });
     } else {
+      setIsPageLoading(true);
       axios.post("https://movieapp-itix.onrender.com/user/login", userData)
         .then((res) => {
-          console.log(res);
-          // dispatch(setUserData(res?.data?.otherDetails))
           Swal.fire({
             position: "top",
             icon: "success",
@@ -36,7 +37,8 @@ const Login = () => {
             timer: 1200
           });
           localStorage.setItem('userData', JSON.stringify(res?.data?.otherDetails))
-          navigate("/home")
+          navigate("/home");
+          setIsPageLoading(false);
         })
         .catch((err) => {
           Swal.fire({
@@ -46,6 +48,7 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1200
           })
+          setIsPageLoading(false)
           console.log(err)
         })
     }
@@ -53,7 +56,22 @@ const Login = () => {
   return (
     <div className='AuthContainer' style={{ backgroundColor: '#2b2d42' }}>
 
-      <div className='mainLoginDiv animate__animated animate__rubberBand'>
+      {  isPageLoading ?
+      <div className='initialLoader'>
+      <MagnifyingGlass
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="magnifying-glass-loading"
+      wrapperStyle={{}}
+      wrapperClass="magnifying-glass-wrapper"
+      glassColor="#c0efff"
+      color="#e15b64"
+      />
+      <p>Please wait till we Server wake up</p>
+      <p>It will take upto 20sec for first time</p>
+      </div>
+      :<div className='mainLoginDiv animate__animated animate__rubberBand'>
         <div
           style={{
             fontWeight: 600,
@@ -80,7 +98,7 @@ const Login = () => {
             Register Here
           </p>
         </Link>
-      </div>
+      </div>}
     </div>
   )
 }

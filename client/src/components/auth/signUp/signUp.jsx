@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import { Blocks } from 'react-loader-spinner'
+import { Blocks } from 'react-loader-spinner';
+import { ProgressBar } from 'react-loader-spinner';
 const SignUp = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false)
   const [userData, setUserData] = useState({ email: "", password: "", name: "", image: "",number:"" });
+  const [isPageLoading,setIsPageLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(()=>{
     localStorage.clear();
@@ -32,9 +34,10 @@ const SignUp = () => {
         timer: 1200
       });
     }else {
+      setIsPageLoading(true);
       axios.post("https://movieapp-itix.onrender.com/user/register", userData)
         .then((res) => {
-          console.log(res);
+
           Swal.fire({
             position: "top",
             icon: "success",
@@ -42,6 +45,7 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1200
           })
+          setIsPageLoading(false);
           navigate("/")
         })
         .catch((err) => {
@@ -52,10 +56,10 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1200
           })
+          setIsPageLoading(false);
           console.log(err)
         })
     }
-    console.log(userData)
   }
 
   const postDetails = (pics) => {
@@ -109,7 +113,19 @@ const SignUp = () => {
 
   return (
     <div className='AuthContainer' style={{ backgroundColor: '#2b2d42' }}>
-      <div className='mainLoginDiv animate__animated animate__rubberBand'>
+      {isPageLoading ?<div className='initialLoader'>
+      <ProgressBar
+        visible={true}
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="progress-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        />
+        <p>Wait till we buid you Profile</p>
+        </div> 
+       :<div className='mainLoginDiv animate__animated animate__rubberBand'>
         <div
           style={{
             fontWeight: 600,
@@ -149,7 +165,7 @@ const SignUp = () => {
           Go to login
         </p>
         </Link>
-      </div>
+      </div>}
     </div>
   )
 }

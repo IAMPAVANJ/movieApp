@@ -12,7 +12,6 @@ const FavouriteMovies = () => {
     const dispatch = useDispatch();
     const [loading,setLoading] = useState(false);
     const user = JSON.parse(localStorage.getItem('userData'));
-    console.log("user",user)
     const favMovies = useSelector((state)=>state.mainSlice.favoriteMovie)    
     useEffect(()=>{
       setLoading(true);

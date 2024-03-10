@@ -107,3 +107,13 @@ input[type=number]{
   margin-top: 2px;
   color: aliceblue;
 }
+.initialLoader{
+  place-self: center;
+}
+.initialLoader>p{
+  font-size: 30px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
+  backdrop-filter: blur(5px);
+  color: aliceblue;
+}

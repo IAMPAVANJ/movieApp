@@ -16,7 +16,6 @@ const MovieDetail = () => {
     useEffect(()=>{
         axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=4aafdefd9b32d27809998bc3057a9681`)
     .then((res)=>{
-      console.log(res)
       setMovie(res?.data)
       setNewMovie(res?.data)
     })
@@ -35,7 +34,6 @@ const MovieDetail = () => {
                     }
                     axios.post('https://movieapp-itix.onrender.com/movies/add-favourite-movies',Obj)
                     .then((res)=>{
-                        console.log(res)
                         dispatch(setOneFavouriteMovie(Obj))
                     })
                     .catch((err)=>{
@@ -79,7 +77,6 @@ const MovieDetail = () => {
 
                     axios.post('https://movieapp-itix.onrender.com/movies/add-watchlist-movies',Obj)
                     .then((res)=>{
-                        console.log(res)
                         dispatch(setOneWatchlistMovie(Obj))
                     })
                     .catch((err)=>{
@@ -98,7 +95,6 @@ const MovieDetail = () => {
                 let id  = res?.data?.data?._id;
                 axios.delete(`https://movieapp-itix.onrender.com/movies/delete-watchlist-movies/${id}`)
                         .then((res)=>{
-                            console.log(res)
                             dispatch(deleteFromWatchlist(obj))
                         })
                         .catch((err)=>{
