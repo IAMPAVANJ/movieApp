@@ -6,6 +6,7 @@ import GenreDropdown from '../genreDropDown/GenreDropdown';
 const Navbar = () => {
   const activePage = useSelector((state)=>state.mainSlice.activePage);
   const navigate = useNavigate();
+  const loggedUser = JSON.parse(localStorage.getItem('userData'));
   const [user,setUserData] = useState({name:'',email:'',image:''})
   useLayoutEffect(()=>{
     let data = localStorage.getItem('userData');

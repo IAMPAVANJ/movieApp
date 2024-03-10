@@ -145,7 +145,7 @@ const MovieDetail = () => {
                         <div className="movie__name">{currentMovieDetail ? currentMovieDetail.original_title : ""}</div>
                         <div className="movie__tagline">{currentMovieDetail ? currentMovieDetail.tagline : ""}</div>
                         <div className="movie__rating">
-                            {currentMovieDetail ? currentMovieDetail.vote_average: ""} <i className="fas fa-star" /> <i  className={checkfav(movie)? 'fa fa-heart favStar':'fa fa-heart'} onClick={handleFavourite}
+                            {currentMovieDetail ? currentMovieDetail.vote_average.toFixed(1): ""} <i className="fas fa-star" /> <i  className={checkfav(movie)? 'fa fa-heart favStar':'fa fa-heart'} onClick={handleFavourite}
                         style={{color:checkfav(movie)?'red':'white'}}/> <i className='fa fa-bookmark' style={{color:checkWatch(movie)?'blue':'white'}} onClick={handleWatch}/>  
                             <span className="movie__voteCount">{currentMovieDetail ? "(" + currentMovieDetail.vote_count + ") votes" : ""}</span>
                         </div>  
