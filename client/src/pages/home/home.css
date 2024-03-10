@@ -4,7 +4,9 @@
     width: 100%;
 }
 .dnaSpinner{
+    margin-top: 20%;
     place-self: center;
+    
 }
 .posterImage{
     height: min(100vh,600px);

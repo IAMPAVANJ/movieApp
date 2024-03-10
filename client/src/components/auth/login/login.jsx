@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import "./login.css"
 import {useNavigate} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 const Login = () => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const  navigate = useNavigate();
@@ -25,6 +27,7 @@ const Login = () => {
       axios.post("http://localhost:8080/user/login", userData)
         .then((res) => {
           console.log(res);
+          // dispatch(setUserData(res?.data?.otherDetails))
           Swal.fire({
             position: "top",
             icon: "success",

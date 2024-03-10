@@ -45,7 +45,7 @@ const Navbar = () => {
                 <p className={`nav-link ${activePage=='favourite'?'active' : ""} customcss-nav-p`}>Favourites</p>
               </li>
               </Link>
-              <Link to="watchlist" style={{textDecoration:"none"}}>
+              <Link to="/watchlist" style={{textDecoration:"none"}}>
               <li className="nav-item">
                 <p className={`nav-link ${activePage=='watchlist'?'active' : ""} customcss-nav-p`} >Watchlist</p>
               </li>

@@ -22,13 +22,10 @@ const addToFavourite = async(req,res)=>{
 }
 
 const deleteFromFavourite = async(req,res)=>{
-    const {userId,id} = req.body;
-    console.log(userId,id)
     try{
-        const deleteMovie = await Favourite.findOneAndDelete({$and:[
-            {userId:req.body.userId},
-            {id:req.body.id},
-        ]});
+        const deleteMovie = await Favourite.findOneAndDelete(
+            {_id:req.params.id},
+        );
         return res.status(200).json({
             Message:"Movie Removed from favourites",
             deleteMovie

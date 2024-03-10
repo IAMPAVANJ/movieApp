@@ -1,0 +1,19 @@
+.favouriteMainPage{
+    display: grid;
+    width: 100%;
+    min-height: 50vh;
+}
+.btn-favmovies{
+    place-self: center;
+}
+.btn__favmovies{
+    font-size: 20px;
+    padding:5px 15px;
+    border-radius: 10px;
+    background-color: #a4133c;
+    border: none;
+}
+.fa-heart{
+    color: aliceblue;
+    margin-left: 5px;
+}

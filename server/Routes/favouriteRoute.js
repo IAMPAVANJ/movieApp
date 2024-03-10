@@ -4,7 +4,7 @@ const { getAllFavouriteMovie, addToFavourite, deleteFromFavourite, getOneFavouri
 
 route.get("/favourite-movies/:userId",getAllFavouriteMovie);
 route.post("/add-favourite-movies",addToFavourite);
-route.delete("/delete-favourite-movies",deleteFromFavourite);
+route.delete("/delete-favourite-movies/:id",deleteFromFavourite);
 route.post("/single-favourite-movie",getOneFavouriteMovie)
 
 module.exports = route;

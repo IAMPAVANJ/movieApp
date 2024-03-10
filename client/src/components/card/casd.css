@@ -25,13 +25,13 @@
     position: absolute;
     padding: 0 1rem 1rem 1rem;
     bottom: 0px;
-    height:290px;
+    height:100px;
     display: flex;
     flex-direction: column;
     width: 85%;
     justify-content: flex-end;
     background-color: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,1));
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.2s;
 }
 .cards__overlay:hover{
@@ -44,4 +44,15 @@
     font-style: italic;
     font-size: 0.75rem;
     margin-bottom: 0.25rem;
+}
+.favStar{
+    color: red;
+}
+.cards__icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cards__icons>i{
+    z-index: 1000;
 }

@@ -23,12 +23,11 @@ const addToWatchlist = async(req,res)=>{
 
 const deleteFromWatchlist= async(req,res)=>{
     try{
-        const deleteMovie = await Watchlist.findOneAndDelete({$and:[
-            {userId:req.body.userId},
-            {id:req.body.id},
-        ]});
+        const deleteMovie = await Watchlist.findOneAndDelete(
+            {_id:req.params.id},
+        );
         return res.status(200).json({
-            Message:"Movie Removed from favourites",
+            Message:"Movie Removed from Watchlist",
             deleteMovie
         })
     }catch(err){
@@ -40,10 +39,10 @@ const deleteFromWatchlist= async(req,res)=>{
 
 const getAllWatchlistMovie = async(req,res)=>{
     try{
-        const AllFavouriteMovies = await Watchlist.find({userId:req.params.userId});
+        const AllWatchlistMovies = await Watchlist.find({userId:req.params.userId});
         return res.status(200).json({
             message:"Success",
-            AllFavouriteMovies
+            AllWatchlistMovies
         })
     }catch(err){
         return res.status(400).json({

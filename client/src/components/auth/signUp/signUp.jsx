@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { Blocks } from 'react-loader-spinner'
 const SignUp = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false)
   const [userData, setUserData] = useState({ email: "", password: "", name: "", image: "" });
+  const navigate = useNavigate();
   useEffect(()=>{
     localStorage.clear();
   },[])
@@ -32,7 +33,7 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1200
           })
-          
+          navigate("/")
         })
         .catch((err) => {
           Swal.fire({

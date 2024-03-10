@@ -9,8 +9,8 @@ const MovieList = ({data}) => {
         if(activePage=="home"){
             return "POPULAR";
         }
-        if(activePage == 'favourite'){
-            return "FAVOURITE"
+        if(activePage == 'favourite' && data.length>0){
+            return "FAVOURITE";
         }
         if(activePage == 'watchlist'){
             return "WATCHLIST"

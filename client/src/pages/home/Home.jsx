@@ -6,10 +6,14 @@ import "./home.css";
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/NavBar/Navbar'
 import MovieList from '../../components/movielist/movieList';
-import { setActivePage } from '../../store/slices/mainSlice';
+import { setActivePage, setMovies } from '../../store/slices/mainSlice';
 import { DNA } from 'react-loader-spinner';
+import ResponsivePagination from 'react-responsive-pagination';
+import axios from 'axios';
 const Home = () => {
     const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 10;
     const data = useSelector((state)=>state?.mainSlice?.movies);
     const genre = useSelector((state)=>state?.mainSlice?.genre);
     function getCarouselData(){
@@ -27,10 +31,16 @@ const Home = () => {
         }else{
             return data.slice(12,17)
         }
-        
-        
-        
     }
+    useEffect(() => {
+        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=4aafdefd9b32d27809998bc3057a9681&page=${currentPage}`)
+            .then((res) => {
+                dispatch(setMovies(res?.data?.results))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [currentPage])
     const carouselData = getCarouselData();
     const [loading,setLoading] = useState(false);
     useEffect(()=>{
@@ -73,10 +83,7 @@ const Home = () => {
                                 {movie ? movie.release_date:''}
                                 <span className="posterImage__rating">
                                     {" "}{movie ? movie.vote_average.toFixed(1) : ''}{" "}
-                                    <i className='fa fa-star favouriteStar'
-                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                         data-bs-custom-class="custom-tooltip"
-                                         data-bs-title="Add To favourite"
+                                    <i className='fa fa-star favouriteStar' title='Rating'
                                         />&nbsp;&nbsp;
                                     <i className='fa fa-bookmark' title="Add to Watchlist"/>
                                 </span>
@@ -90,6 +97,11 @@ const Home = () => {
         <div>
             <MovieList data={data}/>
         </div>
+        <ResponsivePagination
+        current={currentPage}
+        total={totalPages}
+        onPageChange={setCurrentPage}
+         />
         </>
         :
         <div className='dnaSpinner'>
@@ -103,8 +115,9 @@ const Home = () => {
                     />
         </div>
         }
+        
     </div>
   )
 }
 
-export default Home
+export default Home;

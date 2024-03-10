@@ -34,10 +34,9 @@ function App() {
           <Route path="/" element={<Login/>}/>
           <Route path="/signup" element={<SignUp/>}/>
           <Route path='/home' element={<Home />} />
-          <Route path='movie/:id' element={<p>movie id</p>} />
-          <Route path='movies/:type' element={<p>movie sdadid</p>} />
-          <Route path="favourite" element={<FavouriteMovies/>} />
-          <Route path="watchlist" element={<WatchlistMovies/>} />
+          <Route path='/movie/:id' element={<p>movie id</p>} />/
+          <Route path="/favourite" element={<FavouriteMovies/>} />
+          <Route path="/watchlist" element={<WatchlistMovies/>} />
           <Route path='*' element={<p>Error Page</p>} />
         </Routes>
         </Suspense>
