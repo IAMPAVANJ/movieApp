@@ -35,7 +35,7 @@ const SignUp = () => {
       });
     }else {
       setIsPageLoading(true);
-      axios.post("https://movie-app-ds4w.vercel.app/user/register", userData)
+      axios.post("https://movieapp-itix.onrender.com/user/user/register", userData)
         .then((res) => {
 
           Swal.fire({
