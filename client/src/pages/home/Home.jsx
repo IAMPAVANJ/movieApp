@@ -67,10 +67,11 @@ const Home = () => {
          autoFocus={true}
          autoPlay={true}
          axis='horizontal'
-         emulateTouch={true}
+         emulateTouch={false}
          infiniteLoop={true}
          interval={2500}
          showStatus={false}
+         swipeable={false}
         >
                 {carouselData?.map((movie) => (
                     <Link key={movie?.id} to={`/movie/${movie.id}`} style={{textDecoration:'none',color:'white'}}>
