@@ -2,15 +2,29 @@
 const Watchlist = require("../Modal/watchlistModel");
 const addToWatchlist = async(req,res)=>{
     try{
+
+        const isMovieThere = await Watchlist.findOne({$and:[
+            {id:req.body.id},
+            {userId:req.body.userId}
+        ]})
+
+        if(!isMovieThere){
             const addMovie = new Watchlist({
                 ...req.body
            } )
             await addMovie.save();
-
+    
             return res.status(201).json({
                 Message:"Added to Favourite",
                 addMovie
             })
+        }else{
+            return res.status(200).json({
+                Message:"Movie available",
+                isMovieThere
+            })
+        }
+
        
         
     }catch(err){
