@@ -13,7 +13,7 @@ const WatchlistMovies = () => {
     const watchlistMovie = useSelector((state)=>state.mainSlice.watchlistMovie);
     useEffect(()=>{
       setLoading(true);
-      axios.get(`https://movieapp-itix.onrender.com/user/movies/watchlist-movies/${user?._id}`)
+      axios.get(`https://movieapp-itix.onrender.com/movies/watchlist-movies/${user?._id}`)
       .then((res)=>{
         setLoading(false)
         dispatch(setAllWatchlistMovies(res?.data?.AllWatchlistMovies))

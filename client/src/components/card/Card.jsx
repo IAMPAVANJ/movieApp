@@ -45,7 +45,7 @@ const Card = ({movie}) => {
                     let Obj = {
                         userId:user?._id,...movie
                     }
-                    axios.post('https://movieapp-itix.onrender.com/user/movies/add-favourite-movies',Obj)
+                    axios.post('https://movieapp-itix.onrender.com/movies/add-favourite-movies',Obj)
                     .then((res)=>{
                         dispatch(setOneFavouriteMovie(Obj))
                     })
@@ -58,7 +58,7 @@ const Card = ({movie}) => {
                 userId:user?._id,
                 id:movie.id
             }
-            axios.delete(`https://movieapp-itix.onrender.com/user/movies/delete-favourite-movies/${movie._id}`)
+            axios.delete(`https://movieapp-itix.onrender.com/movies/delete-favourite-movies/${movie._id}`)
                     .then((res)=>{
                         dispatch(deleteFromFavourite(obj))
                     })
@@ -74,7 +74,7 @@ const Card = ({movie}) => {
                     let Obj = {
                         userId:user?._id,...movie
                     }
-                    axios.post('https://movieapp-itix.onrender.com/user/movies/add-watchlist-movies',Obj)
+                    axios.post('https://movieapp-itix.onrender.com/movies/add-watchlist-movies',Obj)
                     .then((res)=>{
                         dispatch(setOneWatchlistMovie(Obj))
                     })
@@ -87,7 +87,7 @@ const Card = ({movie}) => {
                 userId:user?._id,
                 id:movie.id
             }
-            axios.delete(`https://movieapp-itix.onrender.com/user/movies/delete-watchlist-movies/${movie._id}`)
+            axios.delete(`https://movieapp-itix.onrender.com/movies/delete-watchlist-movies/${movie._id}`)
                     .then((res)=>{
                         console.log(res)
                         dispatch(deleteFromWatchlist(obj))

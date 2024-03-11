@@ -35,7 +35,7 @@ const SignUp = () => {
       });
     }else {
       setIsPageLoading(true);
-      axios.post("https://movieapp-itix.onrender.com/user/user/register", userData)
+      axios.post("https://movieapp-itix.onrender.com/user/register", userData)
         .then((res) => {
 
           Swal.fire({
