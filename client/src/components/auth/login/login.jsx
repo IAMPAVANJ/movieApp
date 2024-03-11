@@ -27,7 +27,7 @@ const Login = () => {
       });
     } else {
       setIsPageLoading(true);
-      axios.post("https://movieapp-itix.onrender.com/user/login", userData)
+      axios.post("https://movie-app-ds4w.vercel.appuser/login", userData)
         .then((res) => {
           Swal.fire({
             position: "top",
