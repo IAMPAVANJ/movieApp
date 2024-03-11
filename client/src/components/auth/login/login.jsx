@@ -27,7 +27,7 @@ const Login = () => {
       });
     } else {
       setIsPageLoading(true);
-      axios.post("https://movieapp-itix.onrender.com/useruser/login", userData)
+      axios.post("https://movieapp-itix.onrender.com/user/login", userData)
         .then((res) => {
           Swal.fire({
             position: "top",
