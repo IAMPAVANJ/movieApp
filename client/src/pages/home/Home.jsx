@@ -96,11 +96,13 @@ const Home = () => {
         <div>
             <MovieList data={data}/>
         </div>
-        <ResponsivePagination
-        current={currentPage}
-        total={totalPages}
-        onPageChange={setCurrentPage}
-         />
+           <div style={{margin-bottom:"5px"}}>
+            <ResponsivePagination
+            current={currentPage}
+            total={totalPages}
+            onPageChange={setCurrentPage}
+             />
+           </div>
         </>
         :
         <div className='dnaSpinner'>
