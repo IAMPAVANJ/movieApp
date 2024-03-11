@@ -96,7 +96,7 @@ const Home = () => {
         <div>
             <MovieList data={data}/>
         </div>
-           <div style={{margin-bottom:"5px"}}>
+           <div style={{marginBottom:"5px"}}>
             <ResponsivePagination
             current={currentPage}
             total={totalPages}
