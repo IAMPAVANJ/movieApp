@@ -13,6 +13,13 @@ const Login = () => {
   const [isPageLoading,setIsPageLoading] = useState(false);
   const  navigate = useNavigate();
   useEffect(()=>{
+    axios.get("https://movieapp-itix.onrender.com/call/wakeUp")
+    .then((res)=>{
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
     localStorage.clear();
   },[])
   const handleSubmit = (e) => {

@@ -4,6 +4,7 @@ const cors = require('cors');
 const UserRoutes = require('./Routes/userRoutes');
 const FavouriteMovies = require("./Routes/favouriteRoute");
 const WatchlistMovies = require("./Routes/watchlistRoutes");
+const WakeUpCall = require("./Routes/wakeUpRoute");
 const connect = require('./dbConnection/Connection');
 const port = 8080;
 const dotenv = require('dotenv');
@@ -16,7 +17,8 @@ connect();
 
 app.use("/user",UserRoutes);
 app.use("/movies",FavouriteMovies);
-app.use("/movies",WatchlistMovies)
+app.use("/movies",WatchlistMovies);
+app.use("/call",WakeUpCall);
 
 
 
