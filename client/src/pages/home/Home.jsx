@@ -6,7 +6,7 @@ import "./home.css";
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/NavBar/Navbar'
 import MovieList from '../../components/movielist/movieList';
-import { setActivePage, setMovies } from '../../store/slices/mainSlice';
+import { setActivePage, setAllFavouriteMovies, setAllWatchlistMovies, setMovies } from '../../store/slices/mainSlice';
 import { DNA } from 'react-loader-spinner';
 import ResponsivePagination from 'react-responsive-pagination';
 import axios from 'axios';
@@ -16,6 +16,7 @@ const Home = () => {
     const totalPages = 10;
     const data = useSelector((state)=>state?.mainSlice?.movies);
     const genre = useSelector((state)=>state?.mainSlice?.genre);
+    const user = JSON.parse(localStorage.getItem('userData'))
     function getCarouselData(){
         if(genre[0]=="Release Date"){
             return data.slice(0,5);
@@ -43,7 +44,25 @@ const Home = () => {
     }, [currentPage])
     const carouselData = getCarouselData();
     const [loading,setLoading] = useState(false);
+
     useEffect(()=>{
+        axios.get(`https://movieapp-itix.onrender.com/movies/favourite-movies/${user?._id}`)
+        .then((res)=>{
+          dispatch(setAllFavouriteMovies(res?.data?.AllFavouriteMovies))
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+
+        axios.get(`https://movieapp-itix.onrender.com/movies/watchlist-movies/${user?._id}`)
+        .then((res)=>{
+          setLoading(false)
+          dispatch(setAllWatchlistMovies(res?.data?.AllWatchlistMovies))
+        })
+        .catch((err)=>{
+          console.log(err)
+          setLoading(false)
+        })
         dispatch(setActivePage('home'));
     },[])
 

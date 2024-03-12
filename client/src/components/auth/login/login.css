@@ -109,6 +109,13 @@ input[type=number]{
 }
 .initialLoader{
   place-self: center;
+  text-align: center;
+}
+.initialLoader>img{
+  border: 10px solid black;
+  border-radius: 10px;
+  height: 400px;
+  width: 300px;
 }
 .initialLoader>p{
   font-size: 30px;

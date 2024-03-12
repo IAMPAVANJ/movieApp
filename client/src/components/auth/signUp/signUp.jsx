@@ -37,7 +37,6 @@ const SignUp = () => {
       setIsPageLoading(true);
       axios.post("https://movieapp-itix.onrender.com/user/register", userData)
         .then((res) => {
-
           Swal.fire({
             position: "top",
             icon: "success",
@@ -45,8 +44,9 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1200
           })
-          setIsPageLoading(false);
-          navigate("/")
+            navigate("/home");
+            setIsPageLoading(false);
+
         })
         .catch((err) => {
           Swal.fire({
@@ -123,7 +123,10 @@ const SignUp = () => {
         wrapperStyle={{}}
         wrapperClass=""
         />
-        <p>Wait till we buid you Profile</p>
+        <p>Wait till we buid your Profile</p>
+        <p>As Backend is On Free server, So It will take upto  minute</p>
+        <p>For First time</p>
+        <img src='./assets/authAssets/signUp.gif' style={{width:"400px",height:"300"}}/>
         </div> 
        :<div className='mainLoginDiv animate__animated animate__rubberBand'>
         <div
