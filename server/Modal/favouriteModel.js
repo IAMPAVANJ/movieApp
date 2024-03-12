@@ -12,5 +12,5 @@ const FavouriteSchema =  mongoose.Schema({
         vote_average: { type: Number, required: false },
       }
 )
-const Favourite = mongoose.model('favourite',FavouriteSchema);
+const Favourite = mongoose.model('newFavourite',FavouriteSchema);
 module.exports = Favourite;

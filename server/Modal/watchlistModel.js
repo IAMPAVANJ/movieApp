@@ -12,5 +12,5 @@ const WatchlistSchema =  mongoose.Schema({
         vote_average: { type: Number, required: false },
       }
 )
-const Watchlist = mongoose.model('watchlist',WatchlistSchema);
+const Watchlist = mongoose.model('newWatchlist',WatchlistSchema);
 module.exports = Watchlist;
